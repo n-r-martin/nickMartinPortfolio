@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="css/primary.css">
 
     <script src="https://use.fontawesome.com/fce6c40c6d.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.0/gsap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"        
+            integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+            crossorigin="anonymous">
+    </script>
 
     <!--[if lt IE 9]>
       <script src = "http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -49,6 +54,7 @@
       <div class="card-circle-shadow"></div>
       <div class="project-card-img-container"></div>  
 
+
       <div class="project-card-text-container">
         <h4>Ares View</h4>
         <h5>Interactive Map of Mars</h5>
@@ -57,44 +63,21 @@
       </div>
 
       <div class="card-bottom-container">
-        <div class="animated-marquee-container">
-          <ul class="marquee">
-            <li>UX Design</li>
-            <li>UI Design</li>
-            <li>UX Analysis</li>
-            <li>Development</li>
-            <li>DevOps</li>
-          </ul>
-        </div>
 
-        <button>View<i class="fa fa-caret-right" aria-hidden="true"></i></button>
-      </div>
-
-      
-    </section>
-
-    <section class="project-card">
-      <div class="card-circle-accent"></div>
-      <div class="card-circle-shadow"></div>
-      <div class="project-card-img-container"></div>  
-
-      <div class="project-card-text-container">
-        <h4>Ares View</h4>
-        <h5>Interactive Map of Mars</h5>
-
-        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
-      </div>
-
-      <div class="card-bottom-container">
-        <div class="animated-marquee-container">
-          <ul class="marquee">
-            <li>UX Design</li>
-            <li>UI Design</li>
-            <li>UX Analysis</li>
-            <li>Development</li>
-            <li>DevOps</li>
-          </ul>
-        </div>
+        <div class="role-marquee-container">
+          <ul class="role-marquee">
+             <li class='listitem'>UX Analysis</li>
+             <li class='listitem'>UX Design</li>
+             <li class='listitem'>UI Design</li>
+             <li class='listitem'>Development</li>
+             <li class='listitem'>DevSecOps</li>
+             <li class='listitem'>UX Analysis</li>
+             <li class='listitem'>UX Design</li>
+             <li class='listitem'>UI Design</li>
+             <li class='listitem'>Development</li>
+             <li class='listitem'>DevSecOps</li>
+         </ul>
+       </div>
 
         <button>View<i class="fa fa-caret-right" aria-hidden="true"></i></button>
       </div>
@@ -113,17 +96,44 @@
       </div>
 
       <div class="card-bottom-container">
-        <div class="animated-marquee-container">
-          <ul class="marquee">
-            <li>UX Design</li>
-            <li>UI Design</li>
-            <li>UX Analysis</li>
-            <li>Development</li>
-            <li>DevOps</li>
+        <div id="role-marquee" class="marquee">
+          <ul style="white-space:nowrap;">
+             <li>UX Analysis</li>
+             <li>UX Design</li>
+             <li>UI Design</li>
+             <li>Development</li>
+             <li>DevOps</li>
           </ul>
-        </div>
-      
+       </div>
 
+        <button>View<i class="fa fa-caret-right" aria-hidden="true"></i></button>
+      </div>
+    </section>
+
+    <section class="project-card">
+      <div class="card-circle-accent"></div>
+      <div class="card-circle-shadow"></div>
+      <div class="project-card-img-container"></div>  
+
+      <div class="project-card-text-container">
+        <h4>Ares View</h4>
+        <h5>Interactive Map of Mars</h5>
+
+        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. </p>
+      </div>
+
+      <div class="card-bottom-container">
+
+        <div id="role-marquee" class="marquee">
+          <ul style="white-space:nowrap;">
+             <li>UX Analysis</li>
+             <li>UX Design</li>
+             <li>UI Design</li>
+             <li>Development</li>
+             <li>DevOps</li>
+          </ul>
+       </div>
+      
         <button>View<i class="fa fa-caret-right" aria-hidden="true"></i></button>
       </div>
     </section>
@@ -152,6 +162,6 @@
 
 </body>
 
-<script type="text/javascript" src="primary.js"></script>
+<script type="text/javascript" src="js/primary.js"></script>
 
 </html>
