@@ -1,8 +1,16 @@
 
-var $tickerWrapper = $(".role-marquee-container");
+// Project Role Marquee Animation Script
+//Loop required so that the project role marquees are identified individually
+let i;
+let marquee = $('.role-marquee-container');
+for (i = 0; i < marquee.length; i++) {
+
+
+var $tickerWrapper = $(".role-marquee-container:eq("+i+")");
 var $list = $tickerWrapper.find("ul.role-marquee");
 var $clonedList = $list.clone();
-var listWidth = 10;
+//IMPORTANT!! Keep this at 0 so there is no additional spacing between the cloned lists
+var listWidth = 0;
 
 $list.find("li").each(function (i) {
 			listWidth += $(this, i).outerWidth(true);
@@ -16,9 +24,10 @@ $list.add($clonedList).css({
 
 $clonedList.addClass("cloned").appendTo($tickerWrapper);
 
-//TimelineMax
+//TimelineMax - Depends on GSAP jQuery library - must be in head tag of every HTML page
 var infinite = new TimelineMax({repeat: -1, paused: true});
-var time = 10;
+//Change the value of this variable to adjust marquee speed
+var time = 15;
 
 infinite
   .fromTo($list, time, {rotation:0.01,x:0}, {force3D:true, x: -listWidth, ease: Linear.easeNone}, 0)
@@ -28,10 +37,5 @@ infinite
   .to($list, time, {force3D:true, rotation:0.01, x: 0, ease: Linear.easeNone}, time)
   .progress(1).progress(0)
   .play();
+}
 
-//Pause/Play		
-$tickerWrapper.on("mouseenter", function(){
-	infinite.pause();
-}).on("mouseleave", function(){
-	infinite.play();
-});
