@@ -10,7 +10,7 @@ var $tickerWrapper = $(".role-marquee-container:eq("+i+")");
 var $list = $tickerWrapper.find("ul.role-marquee");
 var $clonedList = $list.clone();
 //IMPORTANT!! Keep this at 0 so there is no additional spacing between the cloned lists
-var listWidth = 5;
+var listWidth = 20;
 
 $list.find("li").each(function (i) {
 			listWidth += $(this, i).outerWidth(true);
