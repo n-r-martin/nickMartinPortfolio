@@ -22,23 +22,25 @@
 </head>
 
 <body>
-  <header>
-    <div id="name-description-container">
-      <h1>Nick Martin</h1>
-      <h2>UX Designer | Developer</h2>
+  <header id="primary-header" class="header-down">
+    <div class="header-content-container">
+      <div id="name-description-container">
+        <h1>Nick Martin</h1>
+        <h2>UX Designer | Developer</h2>
+      </div>
+
+      <i id="menu-icon" class="fa fa-bars" aria-hidden="true"></i>
+
+      <!-- Desktop Menu - visible at larger widths -->
+      <nav id="desktop-nav" class="global-nav-styles">
+        <ul>
+          <li><a href="#">work</a></li>
+          <li><a href="#">play</a></li>
+          <li><a href="#">about</a></li>
+          <li><a href="#">r&eacute;sum&eacute;</a></li>
+        </ul>
+      </nav>
     </div>
-
-    <i id="menu-icon" class="fa fa-bars" aria-hidden="true"></i>
-
-    <!-- Desktop Menu - visible at larger widths -->
-    <nav id="desktop-nav" class="global-nav-styles">
-      <ul>
-        <li><a href="#">work</a></li>
-        <li><a href="#">play</a></li>
-        <li><a href="#">about</a></li>
-        <li><a href="#">r&eacute;sum&eacute;</a></li>
-      </ul>
-    </nav>
   </header>
 
   <!-- mobile menu hidden by default and only functional at smaller widths -->

@@ -1,3 +1,12 @@
+$(document).ready(function() {
+
+    console.log('document loaded');
+
+    //forces window back to top on reload - preferred for header disappearance/reappearance feature
+    $(window).on('beforeunload', function() {
+      $(window).scrollTop(0);
+    });
+
 //General JS Interactions
 
 //Mobile menu visibility controls 
@@ -27,7 +36,45 @@ $('#close-icon').on('click', function(event) {
         height: '100%'
     });
 }
-  
+
+//Hides and Displays header based on scroll
+var didScroll;
+var lastScrollTop = 0;
+var delta = 5;
+var headerHeight = $('#primary-header').outerHeight();
+
+// on scroll, let the interval function know the user has scrolled
+$(window).scroll(function(event){
+  didScroll = true;
+});
+// run hasScrolled() and reset didScroll status
+setInterval(function() {
+  if (didScroll) {
+    hasScrolled();
+    didScroll = false;
+  }
+}, 100);
+
+function hasScrolled() {
+  var st = $(this).scrollTop();
+
+  if (Math.abs(lastScrollTop - st) <= delta)
+    return;
+
+  // If current position > last position AND scrolled past header...
+  if (st > lastScrollTop && st > headerHeight){
+    // Scroll Down
+    $('#primary-header').addClass('header-up').removeClass('header-down');
+  } else {
+    // Scroll Up
+    // If did not scroll past the document (possible on mac)...
+    if(st + $(window).height() < $(document).height()) {
+      $('#primary-header').removeClass('header-up').addClass('header-down');
+    }
+  }
+
+  lastScrollTop = st;
+}
 
 
 // Project Role Marquee Animation Script
@@ -69,4 +116,4 @@ infinite
   .progress(1).progress(0)
   .play();
 }
-
+});
