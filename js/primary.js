@@ -2,6 +2,9 @@ $(document).ready(function() {
 
     console.log('document loaded');
 
+    //Allows page to load before adding the class that later triggers dynamic shadow and border style
+    $("header").addClass('header-down');
+
     //forces window back to top on reload - preferred for header disappearance/reappearance feature
     $(window).on('beforeunload', function() {
       $(window).scrollTop(0);
@@ -23,28 +26,20 @@ $('#close-icon').on('click', function(event) {
   });
 
 
-  //Disabling scroll if mobile menu is visible
-  if($("#mobile-menu").is(":visible")){
+ if ($('#mobile-menu').is(':visible')) {
+    $('html').addClass("fixed-position");
+ } else {
+    $('html').removeClass("fixed-position");
+ }
 
-    $('html, body').css({
-        overflow: 'hidden',
-        height: '100%'
-    });
-} else {
-    $('html, body').css({
-        overflow: 'scroll',
-        height: '100%'
-    });
-}
-
-//Hides and Displays header based on scroll
-var didScroll;
+var didScroll = false;
 var lastScrollTop = 0;
 var delta = 5;
-var headerHeight = $('#primary-header').outerHeight();
+var navbarHeight = $("header").outerHeight();
 
 // on scroll, let the interval function know the user has scrolled
-$(window).scroll(function(event){
+$(window).scroll(function(e){
+  console.log("scrolled");  
   didScroll = true;
 });
 // run hasScrolled() and reset didScroll status
@@ -56,26 +51,25 @@ setInterval(function() {
 }, 100);
 
 function hasScrolled() {
-  var st = $(this).scrollTop();
+    var st = $(this).scrollTop();
 
-  if (Math.abs(lastScrollTop - st) <= delta)
-    return;
+    if (Math.abs(lastScrollTop - st) <= delta)
+  return;
 
-  // If current position > last position AND scrolled past header...
-  if (st > lastScrollTop && st > headerHeight){
+  // If current position > last position AND scrolled past navbar...
+if (st > lastScrollTop && st > navbarHeight){
     // Scroll Down
-    $('#primary-header').addClass('header-up').removeClass('header-down');
+    $("header").removeClass("header-down").addClass("header-up");
   } else {
     // Scroll Up
     // If did not scroll past the document (possible on mac)...
-    if(st + $(window).height() < $(document).height()) {
-      $('#primary-header').removeClass('header-up').addClass('header-down');
+    if(st + $(window).height() < $(document).height()) { 
+      $("header").removeClass("header-up").addClass("header-down");
     }
   }
 
   lastScrollTop = st;
 }
-
 
 // Project Role Marquee Animation Script
 //Loop required so that the project role marquees are identified individually
@@ -116,4 +110,41 @@ infinite
   .progress(1).progress(0)
   .play();
 }
+
+// The debounce function receives our function as a parameter
+const debounce = (fn) => {
+
+    // This holds the requestAnimationFrame reference, so we can cancel it if we wish
+    let frame;
+  
+    // The debounce function returns a new function that can receive a variable number of arguments
+    return (...params) => {
+      
+      // If the frame variable has been defined, clear it now, and queue for next frame
+      if (frame) { 
+        cancelAnimationFrame(frame);
+      }
+  
+      // Queue our function call for the next frame
+      frame = requestAnimationFrame(() => {
+        
+        // Call our function and pass any params we received
+        fn(...params);
+      });
+  
+    } 
+  };
+  
+  
+  // Reads out the scroll position and stores it in the data attribute
+  // so we can use it in our stylesheets
+  const storeScroll = () => {
+    document.documentElement.dataset.scroll = window.scrollY;
+  }
+  
+  // Listen for new scroll events, here we debounce our `storeScroll` function
+  document.addEventListener('scroll', debounce(storeScroll), { passive: true });
+  
+  // Update scroll position for first time
+  storeScroll();
 });
