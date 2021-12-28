@@ -1,3 +1,34 @@
+//General JS Interactions
+
+//Mobile menu visibility controls 
+$('#menu-icon').on('click', function(event) {
+    $('#mobile-menu').fadeIn(100, 'linear');
+  });
+
+$('#close-icon').on('click', function(event) {
+    $('#mobile-menu').fadeOut(100, 'linear');
+  });
+
+  $( "#mobile-menu:visible" ).click(function() {
+    $( this ).css( "background", "yellow" );
+  });
+
+
+  //Disabling scroll if mobile menu is visible
+  if($("#mobile-menu").is(":visible")){
+
+    $('html, body').css({
+        overflow: 'hidden',
+        height: '100%'
+    });
+} else {
+    $('html, body').css({
+        overflow: 'scroll',
+        height: '100%'
+    });
+}
+  
+
 
 // Project Role Marquee Animation Script
 //Loop required so that the project role marquees are identified individually
