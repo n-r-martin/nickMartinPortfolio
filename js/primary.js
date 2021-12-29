@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     console.log('document loaded');
 
-    //Allows page to load before adding the class that later triggers dynamic shadow and border style
+    //Allows page to load before adding the class that later triggers dynamic shadow and border styles on header
     $("header").addClass('header-down');
 
     //forces window back to top on reload - preferred for header disappearance/reappearance feature
