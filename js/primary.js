@@ -32,6 +32,8 @@ $('#close-icon').on('click', function(event) {
     $('html').removeClass("fixed-position");
  }
 
+
+//Scroll Interactivity JS
 var didScroll = false;
 var lastScrollTop = 0;
 var delta = 5;
@@ -44,16 +46,16 @@ $(window).scroll(function(e){
   didScroll = true;
 });
 
-// run hasScrolled() and reset didScroll status
+// run hasScrolled() and raiseCard() and reset didScroll status
 setInterval(function() {
   if (didScroll) {
-    hasScrolled();
+    headerShowHide();
     raiseCard()
     didScroll = false;
   }
 }, 100);
 
-function hasScrolled() {
+function headerShowHide() {
     var st = $(this).scrollTop();
 
     if (Math.abs(lastScrollTop - st) <= delta)
@@ -82,15 +84,15 @@ function raiseCard() {
 
          //Same that all the if else statements
          switch (true) {
-          case (st >= 301 && st <= 900):
+          case (st >= 500 && st <= 960):
               $("#card-one").addClass('raised');
               console.log('raise number one!');
               break;
-          case (st >= 901 && st <= 1400):
+          case (st >= 1060 && st <= 1520):
               $("#card-two").addClass('raised');
               console.log('raise number two!');
               break;
-          case (st >= 1401 && st <= 2100):
+          case (st >= 1621):
               $("#card-three").addClass('raised');
               console.log('raise number three!');
               break;
