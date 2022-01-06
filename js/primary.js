@@ -46,6 +46,7 @@ $(window).scroll(function(e){
 setInterval(function() {
   if (didScroll) {
     hasScrolled();
+    // raiseCard();
     didScroll = false;
   }
 }, 100);
@@ -68,8 +69,43 @@ if (st > lastScrollTop && st > navbarHeight){
     }
   }
 
+
+         //Same that all the if else statements
+         switch (true) {
+          case (st >= 591 && scroll <= 1380):
+              $card = $("#card-one");
+              $card.addClass('raised');
+              console.log('raise number one!');
+              break;
+          case (st >= 1381 && scroll <= 2545):
+              $card = $("card-two");
+              $card.addClass('raised');
+              console.log('raise number two!');
+              break;
+          case (st >= 2546 && scroll <= 2969):
+              $card = $("#card-three");
+              $card.addClass('raised');
+              console.log('raise number two!');
+              break;
+          default: //scroll<=590
+              $card = $('.project-card article')
+              $card.removeClass('raised');
+              console.log('no cards raised');
+      }
+
+
   lastScrollTop = st;
 }
+
+  //    //Removing blue class from all links
+     
+
+  //    //Adding blue class to the matched element
+  //    $card.addClass('raised');
+  // }
+
+ 
+
 
 // Project Role Marquee Animation Script
 //Loop required so that the project role marquees are identified individually
