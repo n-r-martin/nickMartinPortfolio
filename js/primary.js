@@ -37,16 +37,18 @@ var lastScrollTop = 0;
 var delta = 5;
 var navbarHeight = $("header").outerHeight();
 
+
 // on scroll, let the interval function know the user has scrolled
 $(window).scroll(function(e){
   console.log("scrolled");  
   didScroll = true;
 });
+
 // run hasScrolled() and reset didScroll status
 setInterval(function() {
   if (didScroll) {
     hasScrolled();
-    // raiseCard();
+    raiseCard()
     didScroll = false;
   }
 }, 100);
@@ -69,40 +71,35 @@ if (st > lastScrollTop && st > navbarHeight){
     }
   }
 
-
-         //Same that all the if else statements
-         switch (true) {
-          case (st >= 591 && scroll <= 1380):
-              $card = $("#card-one");
-              $card.addClass('raised');
-              console.log('raise number one!');
-              break;
-          case (st >= 1381 && scroll <= 2545):
-              $card = $("card-two");
-              $card.addClass('raised');
-              console.log('raise number two!');
-              break;
-          case (st >= 2546 && scroll <= 2969):
-              $card = $("#card-three");
-              $card.addClass('raised');
-              console.log('raise number two!');
-              break;
-          default: //scroll<=590
-              $card = $('.project-card article')
-              $card.removeClass('raised');
-              console.log('no cards raised');
-      }
-
-
   lastScrollTop = st;
 }
 
-  //    //Removing blue class from all links
-     
+// Function to dynamically raise the project card that is currently in focus - run in conjunction with other scroll triggered functions
+function raiseCard() {
+  let st = $(this).scrollTop();
 
-  //    //Adding blue class to the matched element
-  //    $card.addClass('raised');
-  // }
+  $('.project-card').removeClass('raised');
+
+         //Same that all the if else statements
+         switch (true) {
+          case (st >= 301 && st <= 900):
+              $("#card-one").addClass('raised');
+              console.log('raise number one!');
+              break;
+          case (st >= 901 && st <= 1400):
+              $("#card-two").addClass('raised');
+              console.log('raise number two!');
+              break;
+          case (st >= 1401 && st <= 2100):
+              $("#card-three").addClass('raised');
+              console.log('raise number three!');
+              break;
+          default: //scroll<=590
+              $('.project-card').removeClass('raised');
+      }
+
+      lastScrollTop = st;
+  }
 
  
 
