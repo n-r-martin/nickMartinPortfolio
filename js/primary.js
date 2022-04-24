@@ -2,6 +2,14 @@ $(document).ready(function() {
     $(this).scrollTop(0);
 
     console.log('document loaded');
+  
+    let windowHeight = window.innerHeight;
+    console.log(windowHeight);
+    console.log(windowHeight / 2);
+
+    const landingContent = $('#landing-section');
+
+
 
     //Allows page to load before adding the class that later triggers dynamic shadow and border styles on header
     $("header").addClass('header-down');
@@ -79,13 +87,18 @@ if (st > lastScrollTop && st > navbarHeight){
 
 // Function to dynamically raise the project card that is currently in focus - run in conjunction with other scroll triggered functions
 function raiseCard() {
+  const projectCards = document.getElementById('project-cards');
+  var projCardsPos = projectCards.getBoundingClientRect().bottom;
+
   let st = $(this).scrollTop();
+  console.log(projCardsPos);
+  console.log(st);
 
   $('.project-card').removeClass('raised');
 
          //Same that all the if else statements
          switch (true) {
-          case (st >= 500 && st <= 960):
+          case (projCardsPos <= 1890 && projCardsPos >= 1300):
               $("#card-one").addClass('raised');
               console.log('raise number one!');
               break;
