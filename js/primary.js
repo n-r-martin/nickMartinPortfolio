@@ -11,7 +11,7 @@ const navbarHeight = $("header").outerHeight();
   let cardHeight;
   let cardDelta;
   let cardMargin = $('#card-two').css('margin-top');
-  let cardSpacing = parseFloat(cardMargin) / 2;
+  let cardSpacing = parseFloat(cardMargin);
   
 
 ///// FUNCTIONS /////
@@ -48,25 +48,8 @@ function getCardPos() {
   // Dynamically get height of all the cards
   cardHeight = document.querySelector(".project-card").offsetHeight;
   cardSectionStart = document.querySelector("#card-one").getBoundingClientRect().bottom;
-  cardRaiseTrigger = cardSectionStart - cardHeight + cardSpacing;
-  // console.log(cardSpacing);
-  // console.log(cardOnePos);
-
-  //find the margin and add too the raise trigger for cards two and three - 24px at current desktop
-  cardLowerTrigger = cardSectionStart - cardHeight * 2 - cardSpacing;
-
-  // Set the static positon variables based on the viewport so we can compare against them on scroll
-
-  cardTwoPosStatic = document.querySelector("#card-two").getBoundingClientRect().bottom;
-  cardTwoDelta = cardTwoPosStatic - cardHeight;
-
-  cardThreePosStatic = document.querySelector("#card-three").getBoundingClientRect().bottom;
-  cardThreeDelta = cardThreePosStatic - cardHeight;
-
-    // Logging card position variables needed to calculate card raise behavior
-    console.log(cardHeight);
-    console.log(cardTwoPosStatic);
-    console.log(cardRaiseTrigger);
+  cardRaiseTrigger = cardSectionStart - cardHeight * .65;
+  cardLowerTrigger = cardSectionStart - cardHeight * 1.825;
 }
 
 // Function to dynamically raise the project card that is currently in focus - run in conjunction with other scroll triggered functions
@@ -78,24 +61,19 @@ function raiseCard() {
   $(".project-card").removeClass("raised");
 
   //Same that all the if else statements
-  switch (true) {
+  switch (didScroll) {
     case cardOnePos <= cardRaiseTrigger && cardOnePos >= cardLowerTrigger:
       $("#card-one").addClass("raised");
-      console.log("raise number one!");
       break;
     case cardTwoPos <= cardRaiseTrigger && cardTwoPos >= cardLowerTrigger:
       $("#card-two").addClass("raised");
-      console.log("raise number two!");
       break;
     case cardThreePos <= cardRaiseTrigger && cardThreePos >= cardLowerTrigger:
       $("#card-three").addClass("raised");
-      console.log("raise number three!");
       break;
     default: //scroll<=590
       $(".project-card").removeClass("raised");
   }
-
-
 }
 
 // The debounce function receives our function as a parameter
@@ -229,14 +207,11 @@ $("#close-icon").on("click", function (event) {
 
 // on scroll, let the interval function know the user has scrolled
 $(document).on('scroll', function (e) {
-  console.log("scrolled");
   didScroll = true;
 
   var posY = $(document).scrollTop();
 
-
   if (posY === 0) {
     getCardPos();
-};
-
+  };
 });
